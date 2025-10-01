@@ -1,20 +1,19 @@
 <div class="clima-container">
-  <div>
-    <div class="card">
-      <h1 class="city">{{ dadosClima()?.name }}</h1>
-      <div class="temp">{{ temperaturaCelsius | number:'1.0-0' }} °C</div>
-      <div class="weather-icon">
-        <img
-          *ngIf="dadosClima()?.weather?.[0]?.icon"
-          [src]="'http://openweathermap.org/img/wn/' + dadosClima()?.weather?.[0]?.icon + '@2x.png'"
-          alt="Weather Icon"
-        />
-      <p class="descricao">
-        {{ dadosClima()?.weather?.[0]?.description || 'Sem descrição' }}
-      </p>
+  <div class="card">
+    <h1 class="city">{{ dadosClima()?.name }}</h1>
 
-      <p>Exibindo informações do clima atual.</p>
-      <button (click)="navegarParaTelaDePesquisa()">Pesquisar</button>
+    <div class="temp">{{ temperaturaCelsius | number:'1.0-0' }} °C</div>
+
+    <div class="info-row">
+      <div class="weather-icon">
+        <img *ngIf="dadosClima()?.weather?.[0]?.icon" 
+             [src]="'http://openweathermap.org/img/wn/' + dadosClima()?.weather?.[0]?.icon + '@2x.png'" 
+             alt="Weather Icon">
+      </div>
+
+      <div class="descricao">{{ dadosClima()?.weather?.[0]?.description || 'Sem descrição' }}</div>
+
+      <button class="btn" (click)="navegarParaTelaDePesquisa()">Pesquisar</button>
     </div>
   </div>
 </div>
