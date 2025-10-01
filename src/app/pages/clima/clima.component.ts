@@ -5,11 +5,14 @@ import { WeatherResponse } from '../../models/weather-response.model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { DecimalPipe } from '@angular/common';   // ✅ IMPORTA O PIPE
 
 @Component({
   selector: 'app-clima',
   templateUrl: './clima.component.html',
-  styleUrls: ['./clima.component.scss']
+  styleUrls: ['./clima.component.scss'],
+  standalone: true,             // ✅ marca como standalone
+  imports: [DecimalPipe]        // ✅ adiciona o DecimalPipe
 })
 export class ClimaComponent implements OnInit {
 
@@ -24,6 +27,11 @@ export class ClimaComponent implements OnInit {
       })
     )
   );
+
+get temperaturaCelsius(): number | null {
+  const temp = this.dadosClima()?.main?.temp;
+  return temp != null ? temp - 273.15 : null;
+}
 
   constructor() { }
 
