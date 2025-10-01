@@ -3,7 +3,13 @@
     <div class="card">
       <h1 class="city">{{ dadosClima()?.name }}</h1>
       <div class="temp">{{ temperaturaCelsius | number:'1.0-0' }} °C</div>
-      <p class="weather">
+      <div class="weather-icon">
+        <img
+          *ngIf="dadosClima()?.weather?.[0]?.icon"
+          [src]="'http://openweathermap.org/img/wn/' + dadosClima()?.weather?.[0]?.icon + '@2x.png'"
+          alt="Weather Icon"
+        />
+      <p class="descricao">
         {{ dadosClima()?.weather?.[0]?.description || 'Sem descrição' }}
       </p>
 
